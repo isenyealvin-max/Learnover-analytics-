@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f4c400"><title>Learnover Analytics</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#fffdf2;color:#202020;line-height:1.55}
+header{background:#f4c400;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top,0px));display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0002}
+.logo{font-size:23px;font-weight:800}.logo small{display:block;font-size:11px;font-weight:500}
+.menu-btn{border:0;background:#fff7c7;border-radius:12px;padding:9px 13px;font-size:20px;font-weight:800;cursor:pointer}
+main{max-width:620px;margin:auto;padding:16px 14px 60px}.hidden{display:none!important}
+.hero{background:#202020;color:#fff;border-radius:22px;padding:22px 20px;margin-bottom:16px}.hero h1{margin:0 0 8px;font-size:25px}.hero p{color:#eee;margin:0}
+.tag{display:inline-block;background:#fff1a8;color:#202020;border-radius:20px;padding:5px 10px;font-size:12px;font-weight:700;margin:8px 4px 0 0}
+.card{background:#fff;border:1px solid #eee;border-radius:17px;padding:16px;box-shadow:0 3px 12px #00000012;margin-bottom:12px}
+label{display:block;font-weight:700;font-size:14px;margin:12px 0 4px}
+input{width:100%;padding:13px;border:1px solid #ddd;border-radius:11px;font:inherit;background:#fff;color:#202020;min-height:48px}
+input:focus{outline:3px solid #f4c40088;border-color:#c99a00}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{display:block;width:100%;background:#f4c400;color:#171717;border:0;border-radius:11px;padding:12px 16px;font-weight:800;font-size:16px;cursor:pointer;min-height:50px;margin-top:14px}
+.btn.secondary{background:#eee}.btn:disabled{opacity:.5;cursor:not-allowed}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#fff1a8;border-radius:14px;padding:5px;margin-bottom:6px}
+.tabs button{border:0;background:none;border-radius:10px;min-height:46px;font-weight:800;font-size:15px;cursor:pointer}.tabs button.on{background:#fff;box-shadow:0 2px 6px #0002}
+.code{font-size:28px;letter-spacing:10px;text-align:center;font-weight:800}
+.msg{margin:10px 0 0;font-size:14px;min-height:20px}.msg.bad{color:#b3261e;font-weight:700}.msg.good{color:#0f6b4f;font-weight:700}
+.small{font-size:13px;color:#666}.timer{font-weight:800;font-size:18px;text-align:center;margin-top:12px}
+.schoolcode{font-size:30px;font-weight:800;letter-spacing:6px;background:#fff1a8;border-radius:14px;text-align:center;padding:10px;margin:8px 0}
+.member{display:flex;justify-content:space-between;gap:8px;border-top:1px solid #eee;padding:9px 0}.pill{background:#202020;color:#fff;border-radius:20px;padding:2px 10px;font-size:12px;font-weight:700;height:fit-content}
+.menu-backdrop{display:none;position:fixed;inset:0;background:#0006;z-index:29}.menu-backdrop.open{display:block}
+.menu-panel{position:fixed;top:0;right:-340px;width:min(320px,90vw);height:100%;background:#fff;z-index:30;box-shadow:-8px 0 30px #0003;transition:right .25s;padding:20px 16px}.menu-panel.open{right:0}
+.menu-item{width:100%;border:1px solid #eee;background:#fff;border-radius:14px;padding:14px;margin:8px 0;font-weight:700;font-size:15px;cursor:pointer;text-align:left}
+</style></head><body>
+<header><div class="logo">Learnover Analytics<small>Smartness to Success</small></div><button class="menu-btn hidden" id="menuBtn" aria-label="Menu">â˜°</button></header>
+<div id="bd" class="menu-backdrop"></div>
+<aside id="menu" class="menu-panel"><button class="menu-item" id="home2">ðŸ« My schools</button><button class="menu-item" id="out2">ðŸšª Sign out</button><p class="small">Marks entry and report cards come in the next steps.</p></aside>
+<main>
+<section id="vAuth"><div class="hero"><h1>Exam records and report cards</h1><p>Sign in with a code sent to your email. No password needed.</p><span class="tag">CBC</span><span class="tag">Teachers</span><span class="tag">Report cards</span></div>
+<div class="card"><div class="tabs"><button id="tSign" class="on" type="button">Sign in</button><button id="tNew" type="button">Create account</button></div>
+<div id="nameBox" class="hidden"><div class="row2"><div><label for="fn">First name</label><input id="fn" maxlength="40" autocomplete="given-name"></div><div><label for="sn">Second name</label><input id="sn" maxlength="40" autocomplete="family-name"></div></div></div>
+<label for="em">Email</label><input id="em" type="email" inputmode="email" autocomplete="email" maxlength="120" placeholder="you@example.com">
+<button class="btn" id="send" type="button">Send code</button><p class="msg" id="m1" role="status"></p></div></section>
+<section id="vCode" class="hidden"><div class="card"><h2 style="margin-top:0">Enter your code</h2><p class="small" id="sentTo"></p><p class="small">The 6-digit code works for 15 minutes.</p>
+<label for="cd">6-digit code</label><input id="cd" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="------">
+<button class="btn" id="verify" type="button">Verify</button><div class="timer" id="tm"></div><button class="btn secondary" id="resend" type="button" disabled>Resend code</button><button class="btn secondary" id="back" type="button">Use a different email</button><p class="msg" id="m2" role="status"></p></div></section>
+<section id="vName" class="hidden"><div class="card"><h2 style="margin-top:0">Welcome! What is your name?</h2><div class="row2"><div><label for="fn2">First name</label><input id="fn2" maxlength="40"></div><div><label for="sn2">Second name</label><input id="sn2" maxlength="40"></div></div><button class="btn" id="saveName" type="button">Save</button><p class="msg" id="m3"></p></div></section>
+<section id="vHome" class="hidden"><div class="hero"><h1 id="hi">Hi!</h1><p>Create your school as the admin. Teachers will join it in the next step.</p></div>
+<div id="schools"></div>
+<div class="card"><h3 style="margin-top:0">ðŸ« Create a school (admin)</h3><label for="sname">School name</label><input id="sname" maxlength="80" placeholder="e.g. Mwamba Comprehensive School"><button class="btn" id="mk" type="button">Create school</button><p class="msg" id="m4"></p></div>
+<div class="card"><h3 style="margin-top:0">ðŸ”‘ Join a school (teacher)</h3><p class="small">Joining with a school code is coming in the next step. Your admin will approve you.</p></div></section>
+<section id="vSchool" class="hidden"><button class="btn secondary" id="bk" type="button" style="margin-top:0">â† My schools</button><div class="card" style="margin-top:12px"><h2 id="sch" style="margin-top:0"></h2><span class="pill" id="role"></span><p class="small">School code (teachers will use this to join):</p><div class="schoolcode" id="scode">------</div><h3>People in this school</h3><div id="mem"></div></div></section>
+</main>
+<script>
+(function(){"use strict";
+var EP="https://sgp.cloud.appwrite.io/v1",PID="6ad5da4f00376add6847";
+var $=function(i){return document.getElementById(i)},mode="sign",userId=null,me=null,names=null,timer=null;
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v)}catch(e){return null}}
+async function api(method,path,body){var h={"X-Appwrite-Project":PID,"Content-Type":"application/json"},f=ls("cookieFallback");if(f)h["X-Fallback-Cookies"]=f;
+var r=await fetch(EP+path,{method:method,headers:h,credentials:"include",body:body?JSON.stringify(body):undefined});
+var c=r.headers.get("X-Fallback-Cookies");if(c)ls("cookieFallback",c);
+var d=null;try{d=await r.json()}catch(e){}
+if(!r.ok){var e=new Error((d&&d.message)||"Request failed");e.type=d&&d.type;e.status=r.status;throw e}return d}
+function say(id,t,cls){var e=$(id);e.textContent=t;e.className="msg"+(cls?" "+cls:"")}
+function nice(e){if(e.status===undefined)return "Cannot reach Appwrite. Check your internet. If this keeps happening, add this website as a Web platform in Appwrite (Overview, Add platform).";
+if(e.status===429)return "Too many tries. Please wait a few minutes.";if(e.type==="user_invalid_token"||e.type==="user_invalid_credentials")return "That code is wrong or has expired. Check it, or ask for a new code.";
+if(e.status===401)return "You are not signed in. Please sign in again.";return e.message||"Something went wrong. Try again."}
+function view(n){["vAuth","vCode","vName","vHome","vSchool"].forEach(function(v){$(v).classList.toggle("hidden",v!==n)});$("menuBtn").classList.toggle("hidden",n==="vAuth"||n==="vCode");menu(false);window.scrollTo(0,0)}
+function menu(o){$("menu").classList.toggle("open",o);$("bd").classList.toggle("open",o)}
+/* ---- sign in / create account ---- */
+function setMode(m){mode=m;$("tSign").classList.toggle("on",m==="sign");$("tNew").classList.toggle("on",m==="new");$("nameBox").classList.toggle("hidden",m!=="new");say("m1","")}
+$("tSign").onclick=function(){setMode("sign")};$("tNew").onclick=function(){setMode("new")};
+function startTimer(){var s=120;clearInterval(timer);$("resend").disabled=true;function t(){var m=Math.floor(s/60),x=s%60;$("tm").textContent="Resend available in "+(m<10?"0":"")+m+":"+(x<10?"0":"")+x;if(s<=0){clearInterval(timer);$("tm").textContent="00:00";$("resend").disabled=false}s--}t();timer=setInterval(t,1000)}
+async function requestCode(resend){var em=$("em").value.trim().toLowerCase();
+if(!resend){if(!/^\S+@\S+\.\S+$/.test(em)){say("m1","Type a valid email address.","bad");return}
+if(mode==="new"){var f=$("fn").value.trim(),s=$("sn").value.trim();if(!f||!s){say("m1","Type your first and second name.","bad");return}names={f:f,s:s}}else names=null}
+var b=resend?$("resend"):$("send");b.disabled=true;say(resend?"m2":"m1","Sending code...");
+try{var t=await api("POST","/account/tokens/email",{userId:"unique()",email:em});userId=t.userId;$("sentTo").textContent="We sent a code to "+em+".";view("vCode");startTimer();say("m2",resend?"A new code was sent.":"","good");$("cd").value="";$("cd").focus()}
+catch(e){say(resend?"m2":"m1",nice(e),"bad");if(resend)startTimer()}
+if(!resend)b.disabled=false}
+$("send").onclick=function(){requestCode(false)};$("resend").onclick=function(){requestCode(true)};
+$("back").onclick=function(){clearInterval(timer);view("vAuth")};
+/* the "session is active" fix: always end any old session first, and retry once if Appwrite still says one exists */
+async function endSession(){try{await api("DELETE","/account/sessions/current")}catch(e){}ls("cookieFallback",null)}
+async function makeSession(code){await endSession();
+try{return await api("POST","/account/sessions/token",{userId:userId,secret:code})}
+catch(e){if(e.type==="user_session_already_exists"||/session is active/i.test(e.message||"")){await endSession();return await api("POST","/account/sessions/token",{userId:userId,secret:code})}throw e}}
+$("verify").onclick=async function(){var code=$("cd").value.replace(/\D/g,"");if(code.length!==6){say("m2","Type the 6-digit code.","bad");return}
+var b=this;b.disabled=true;say("m2","Checking...");
+try{await makeSession(code);clearInterval(timer);me=await api("GET","/account");
+if(!me.name&&names){await api("PATCH","/account/name",{name:names.f+" "+names.s});me.name=names.f+" "+names.s}
+else if(me.name&&mode==="new")say("m1","You already had an account, so we signed you in.","good");
+if(!me.name){view("vName")}else enter()}
+catch(e){say("m2",nice(e),"bad")}b.disabled=false};
+$("saveName").onclick=async function(){var f=$("fn2").value.trim(),s=$("sn2").value.trim();if(!f||!s){say("m3","Type both names.","bad");return}
+try{await api("PATCH","/account/name",{name:f+" "+s});me.name=f+" "+s;enter()}catch(e){say("m3",nice(e),"bad")}};
+async function signOut(){await endSession();me=null;view("vAuth");setMode("sign")}
+$("out2").onclick=signOut;
+/* ---- home: schools ---- */
+async function enter(){$("hi").textContent="Hi, "+(me.name||"teacher")+"!";view("vHome");await loadSchools()}
+async function loadSchools(){var box=$("schools");box.textContent="";
+try{var r=await api("GET","/teams");(r.teams||[]).forEach(function(t){var c=document.createElement("button");c.className="card";c.style.cssText="width:100%;text-align:left;font:inherit;cursor:pointer";var h=document.createElement("b");h.textContent="ðŸ« "+t.name;var p=document.createElement("div");p.className="small";p.textContent="Tap to open";c.appendChild(h);c.appendChild(p);c.onclick=function(){openSchool(t)};box.appendChild(c)})}
+catch(e){var m=document.createElement("p");m.className="msg bad";m.textContent=nice(e);box.appendChild(m)}}
+function makeCode(){var a="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",u=new Uint32Array(6),o="";crypto.getRandomValues(u);for(var i=0;i<6;i++)o+=a[u[i]%a.length];return o}
+$("mk").onclick=async function(){var n=$("sname").value.trim();if(n.length<3){say("m4","Type the school name.","bad");return}
+var b=this;b.disabled=true;say("m4","Creating school...");
+try{var t=await api("POST","/teams",{teamId:"unique()",name:n});await api("PUT","/teams/"+t.$id+"/prefs",{prefs:{code:makeCode()}});$("sname").value="";say("m4","School created! You are the admin.","good");await loadSchools()}
+catch(e){say("m4",nice(e),"bad")}b.disabled=false};
+async function openSchool(t){$("sch").textContent=t.name;$("scode").textContent="------";$("mem").textContent="Loading...";$("role").textContent="";view("vSchool");
+try{var p=await api("GET","/teams/"+t.$id+"/prefs");$("scode").textContent=p.code||"------";var r=await api("GET","/teams/"+t.$id+"/memberships");$("mem").textContent="";
+(r.memberships||[]).forEach(function(m){var admin=(m.roles||[]).indexOf("owner")>-1,mine=m.userId===me.$id;if(mine)$("role").textContent=admin?"Admin":"Teacher";
+var row=document.createElement("div");row.className="member";var a=document.createElement("span");a.textContent=(m.userName||m.userEmail)+(mine?" (you)":"");var b=document.createElement("span");b.className="pill";b.textContent=admin?"Admin":"Teacher";row.appendChild(a);row.appendChild(b);$("mem").appendChild(row)})}
+catch(e){$("mem").textContent=nice(e)}}
+$("bk").onclick=function(){view("vHome");loadSchools()};$("home2").onclick=function(){view("vHome");loadSchools()};
+$("menuBtn").onclick=function(){menu(true)};$("bd").onclick=function(){menu(false)};
+/* ---- start: if already signed in, skip the login screen ---- */
+(async function(){try{me=await api("GET","/account");me.name?enter():view("vName")}catch(e){view("vAuth")}})();
+})();
+</script></body></html>
