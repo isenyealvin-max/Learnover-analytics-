@@ -1,112 +1,199 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f4c400"><title>Learnover Analytics</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#fffdf2;color:#202020;line-height:1.55}
-header{background:#f4c400;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top,0px));display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0002}
-.logo{font-size:23px;font-weight:800}.logo small{display:block;font-size:11px;font-weight:500}
-.menu-btn{border:0;background:#fff7c7;border-radius:12px;padding:9px 13px;font-size:20px;font-weight:800;cursor:pointer}
-main{max-width:620px;margin:auto;padding:16px 14px 60px}.hidden{display:none!important}
-.hero{background:#202020;color:#fff;border-radius:22px;padding:22px 20px;margin-bottom:16px}.hero h1{margin:0 0 8px;font-size:25px}.hero p{color:#eee;margin:0}
-.tag{display:inline-block;background:#fff1a8;color:#202020;border-radius:20px;padding:5px 10px;font-size:12px;font-weight:700;margin:8px 4px 0 0}
-.card{background:#fff;border:1px solid #eee;border-radius:17px;padding:16px;box-shadow:0 3px 12px #00000012;margin-bottom:12px}
-label{display:block;font-weight:700;font-size:14px;margin:12px 0 4px}
-input{width:100%;padding:13px;border:1px solid #ddd;border-radius:11px;font:inherit;background:#fff;color:#202020;min-height:48px}
-input:focus{outline:3px solid #f4c40088;border-color:#c99a00}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn{display:block;width:100%;background:#f4c400;color:#171717;border:0;border-radius:11px;padding:12px 16px;font-weight:800;font-size:16px;cursor:pointer;min-height:50px;margin-top:14px}
-.btn.secondary{background:#eee}.btn:disabled{opacity:.5;cursor:not-allowed}
-.tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#fff1a8;border-radius:14px;padding:5px;margin-bottom:6px}
-.tabs button{border:0;background:none;border-radius:10px;min-height:46px;font-weight:800;font-size:15px;cursor:pointer}.tabs button.on{background:#fff;box-shadow:0 2px 6px #0002}
-.code{font-size:28px;letter-spacing:10px;text-align:center;font-weight:800}
-.msg{margin:10px 0 0;font-size:14px;min-height:20px}.msg.bad{color:#b3261e;font-weight:700}.msg.good{color:#0f6b4f;font-weight:700}
-.small{font-size:13px;color:#666}.timer{font-weight:800;font-size:18px;text-align:center;margin-top:12px}
-.schoolcode{font-size:30px;font-weight:800;letter-spacing:6px;background:#fff1a8;border-radius:14px;text-align:center;padding:10px;margin:8px 0}
-.member{display:flex;justify-content:space-between;gap:8px;border-top:1px solid #eee;padding:9px 0}.pill{background:#202020;color:#fff;border-radius:20px;padding:2px 10px;font-size:12px;font-weight:700;height:fit-content}
-.menu-backdrop{display:none;position:fixed;inset:0;background:#0006;z-index:29}.menu-backdrop.open{display:block}
-.menu-panel{position:fixed;top:0;right:-340px;width:min(320px,90vw);height:100%;background:#fff;z-index:30;box-shadow:-8px 0 30px #0003;transition:right .25s;padding:20px 16px}.menu-panel.open{right:0}
-.menu-item{width:100%;border:1px solid #eee;background:#fff;border-radius:14px;padding:14px;margin:8px 0;font-weight:700;font-size:15px;cursor:pointer;text-align:left}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#fffdf2;color:#202020;line-height:1.5}
+header{background:#f4c400;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top,0px));display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0002}
+.logo{font-size:22px;font-weight:800}.logo small{display:block;font-size:11px;font-weight:500}
+.mb{border:0;background:#fff7c7;border-radius:12px;padding:9px 13px;font-size:20px;font-weight:800;cursor:pointer}
+main{max-width:760px;margin:auto;padding:14px 12px 100px}
+.hero{background:#202020;color:#fff;border-radius:22px;padding:20px;margin-bottom:14px}.hero h1{margin:0 0 4px;font-size:24px}.hero p{margin:0;color:#ddd}
+.tag{display:inline-block;background:#fff1a8;color:#202020;border-radius:20px;padding:4px 10px;font-size:12px;font-weight:700;margin:8px 4px 0 0}
+.card{background:#fff;border:1px solid #eee;border-radius:17px;padding:14px;box-shadow:0 3px 12px #00000012;margin-bottom:12px}
+.card h3{margin:0 0 8px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.stat{background:#fff;border:1px solid #eee;border-radius:16px;padding:12px;text-align:center;box-shadow:0 3px 12px #00000012}.stat b{display:block;font-size:26px}.stat span{font-size:12px;color:#666}
+label{display:block;font-weight:700;font-size:13px;margin:10px 0 4px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #ddd;border-radius:11px;font:inherit;background:#fff;color:#202020;min-height:46px}
+input:focus,select:focus,textarea:focus{outline:3px solid #f4c40088}.r2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{display:block;width:100%;background:#f4c400;color:#171717;border:0;border-radius:11px;padding:11px;font-weight:800;font-size:15px;cursor:pointer;min-height:48px;margin-top:10px}.btn.s{background:#eee}.btn.d{background:#ffd6d6}
+.x{border:0;background:#ffd6d6;border-radius:8px;min-width:40px;min-height:40px;cursor:pointer;font-weight:800}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid #eee;padding:8px 0}.row:first-of-type{border-top:0}
+.pill{background:#202020;color:#fff;border-radius:20px;padding:2px 10px;font-size:12px;font-weight:700;white-space:nowrap}.pill.y{background:#f4c400;color:#202020}
+.small{font-size:13px;color:#666}.bar{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:13px}.bar i{display:block;height:16px;background:#f4c400;border-radius:8px;min-width:3px}.bar span{width:92px;flex:none}
+.mk{width:84px;text-align:center;font-weight:800}table{width:100%;border-collapse:collapse;font-size:13px}th,td{border:1px solid #ddd;padding:6px;text-align:left}th{background:#fff1a8}
+.tap{cursor:pointer}.tap:active{background:#fff9d8}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:6px 2px calc(6px + env(safe-area-inset-bottom,0px));z-index:10}
+nav button{border:0;background:none;color:#444;font-size:11px;cursor:pointer;min-width:58px;min-height:48px;border-radius:10px}nav b{display:block;font-size:20px}nav button.on{background:#fff1a8;color:#202020;font-weight:800}
+.bd{display:none;position:fixed;inset:0;background:#0006;z-index:29}.bd.o{display:block}.mp{position:fixed;top:0;right:-340px;width:min(320px,90vw);height:100%;background:#fff;z-index:30;box-shadow:-8px 0 30px #0003;transition:right .25s;padding:16px;overflow:auto}.mp.o{right:0}
+.mi{width:100%;border:1px solid #eee;background:#fff;border-radius:14px;padding:13px;margin:7px 0;font-weight:700;font-size:15px;cursor:pointer;text-align:left}
+#print{display:none}.rc{border:2px solid #202020;padding:14px;margin-bottom:16px;page-break-after:always;font-size:13px;background:#fff}.rc h2{text-align:center;margin:0}.rc .t{text-align:center;background:#f4c400;font-weight:800;padding:5px;margin:8px 0}
+.rb{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}.rb div{border:1px solid #202020;border-radius:8px;text-align:center;padding:5px}.rb b{display:block;font-size:17px}
+@media print{body>*:not(#print){display:none!important}#print{display:block!important}.rc{margin:0;border-width:1px}@page{margin:8mm}}
 </style></head><body>
-<header><div class="logo">Learnover Analytics<small>Smartness to Success</small></div><button class="menu-btn hidden" id="menuBtn" aria-label="Menu">â˜°</button></header>
-<div id="bd" class="menu-backdrop"></div>
-<aside id="menu" class="menu-panel"><button class="menu-item" id="home2">ðŸ« My schools</button><button class="menu-item" id="out2">ðŸšª Sign out</button><p class="small">Marks entry and report cards come in the next steps.</p></aside>
-<main>
-<section id="vAuth"><div class="hero"><h1>Exam records and report cards</h1><p>Sign in with a code sent to your email. No password needed.</p><span class="tag">CBC</span><span class="tag">Teachers</span><span class="tag">Report cards</span></div>
-<div class="card"><div class="tabs"><button id="tSign" class="on" type="button">Sign in</button><button id="tNew" type="button">Create account</button></div>
-<div id="nameBox" class="hidden"><div class="row2"><div><label for="fn">First name</label><input id="fn" maxlength="40" autocomplete="given-name"></div><div><label for="sn">Second name</label><input id="sn" maxlength="40" autocomplete="family-name"></div></div></div>
-<label for="em">Email</label><input id="em" type="email" inputmode="email" autocomplete="email" maxlength="120" placeholder="you@example.com">
-<button class="btn" id="send" type="button">Send code</button><p class="msg" id="m1" role="status"></p></div></section>
-<section id="vCode" class="hidden"><div class="card"><h2 style="margin-top:0">Enter your code</h2><p class="small" id="sentTo"></p><p class="small">The 6-digit code works for 15 minutes.</p>
-<label for="cd">6-digit code</label><input id="cd" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="------">
-<button class="btn" id="verify" type="button">Verify</button><div class="timer" id="tm"></div><button class="btn secondary" id="resend" type="button" disabled>Resend code</button><button class="btn secondary" id="back" type="button">Use a different email</button><p class="msg" id="m2" role="status"></p></div></section>
-<section id="vName" class="hidden"><div class="card"><h2 style="margin-top:0">Welcome! What is your name?</h2><div class="row2"><div><label for="fn2">First name</label><input id="fn2" maxlength="40"></div><div><label for="sn2">Second name</label><input id="sn2" maxlength="40"></div></div><button class="btn" id="saveName" type="button">Save</button><p class="msg" id="m3"></p></div></section>
-<section id="vHome" class="hidden"><div class="hero"><h1 id="hi">Hi!</h1><p>Create your school as the admin. Teachers will join it in the next step.</p></div>
-<div id="schools"></div>
-<div class="card"><h3 style="margin-top:0">ðŸ« Create a school (admin)</h3><label for="sname">School name</label><input id="sname" maxlength="80" placeholder="e.g. Mwamba Comprehensive School"><button class="btn" id="mk" type="button">Create school</button><p class="msg" id="m4"></p></div>
-<div class="card"><h3 style="margin-top:0">ðŸ”‘ Join a school (teacher)</h3><p class="small">Joining with a school code is coming in the next step. Your admin will approve you.</p></div></section>
-<section id="vSchool" class="hidden"><button class="btn secondary" id="bk" type="button" style="margin-top:0">â† My schools</button><div class="card" style="margin-top:12px"><h2 id="sch" style="margin-top:0"></h2><span class="pill" id="role"></span><p class="small">School code (teachers will use this to join):</p><div class="schoolcode" id="scode">------</div><h3>People in this school</h3><div id="mem"></div></div></section>
-</main>
+<header><div class="logo">Learnover Analytics<small>Smartness to Success</small></div><button class="mb" id="mb" aria-label="Menu">â˜°</button></header>
+<div class="bd" id="bd"></div><aside class="mp" id="mp"></aside><main id="v"></main><div id="print"></div>
+<nav id="nav"></nav>
 <script>
 (function(){"use strict";
-var EP="https://sgp.cloud.appwrite.io/v1",PID="6ad5da4f00376add6847";
-var $=function(i){return document.getElementById(i)},mode="sign",userId=null,me=null,names=null,timer=null;
+var EP="https://sgp.cloud.appwrite.io/v1",PID="6ad5da4f00376add6847",DB="learnover",TB="records",K="la_ui";
+var DEF=["Mathematics","English","Kiswahili","Social Studies","Christian Religious Education","Creative Arts and Sports","Science and Technology","Pre-Technical Studies","Agriculture and Nutrition"];
+function blank(){return {school:{name:"My School",principal:"",term:"Term 1",year:"2026"},bounds:[85,75,58,41,31,21,11,1],subjects:DEF.slice(),classes:[],learners:[],teachers:[],assess:[],marks:{},rem:{},sel:{},role:"",tab:"auth"}}
+var D=blank(),ME=null,SCH=null,AU={mode:"sign"},base="t",known={},tmo={},tick=null,LIST=[];
+try{D.sel=JSON.parse(localStorage.getItem(K))||{}}catch(e){}
+function save(){try{localStorage.setItem(K,JSON.stringify(D.sel))}catch(e){}}
 function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v)}catch(e){return null}}
 async function api(method,path,body){var h={"X-Appwrite-Project":PID,"Content-Type":"application/json"},f=ls("cookieFallback");if(f)h["X-Fallback-Cookies"]=f;
-var r=await fetch(EP+path,{method:method,headers:h,credentials:"include",body:body?JSON.stringify(body):undefined});
-var c=r.headers.get("X-Fallback-Cookies");if(c)ls("cookieFallback",c);
-var d=null;try{d=await r.json()}catch(e){}
-if(!r.ok){var e=new Error((d&&d.message)||"Request failed");e.type=d&&d.type;e.status=r.status;throw e}return d}
-function say(id,t,cls){var e=$(id);e.textContent=t;e.className="msg"+(cls?" "+cls:"")}
-function nice(e){if(e.status===undefined)return "Cannot reach Appwrite. Check your internet. If this keeps happening, add this website as a Web platform in Appwrite (Overview, Add platform).";
-if(e.status===429)return "Too many tries. Please wait a few minutes.";if(e.type==="user_invalid_token"||e.type==="user_invalid_credentials")return "That code is wrong or has expired. Check it, or ask for a new code.";
-if(e.status===401)return "You are not signed in. Please sign in again.";return e.message||"Something went wrong. Try again."}
-function view(n){["vAuth","vCode","vName","vHome","vSchool"].forEach(function(v){$(v).classList.toggle("hidden",v!==n)});$("menuBtn").classList.toggle("hidden",n==="vAuth"||n==="vCode");menu(false);window.scrollTo(0,0)}
-function menu(o){$("menu").classList.toggle("open",o);$("bd").classList.toggle("open",o)}
-/* ---- sign in / create account ---- */
-function setMode(m){mode=m;$("tSign").classList.toggle("on",m==="sign");$("tNew").classList.toggle("on",m==="new");$("nameBox").classList.toggle("hidden",m!=="new");say("m1","")}
-$("tSign").onclick=function(){setMode("sign")};$("tNew").onclick=function(){setMode("new")};
-function startTimer(){var s=120;clearInterval(timer);$("resend").disabled=true;function t(){var m=Math.floor(s/60),x=s%60;$("tm").textContent="Resend available in "+(m<10?"0":"")+m+":"+(x<10?"0":"")+x;if(s<=0){clearInterval(timer);$("tm").textContent="00:00";$("resend").disabled=false}s--}t();timer=setInterval(t,1000)}
-async function requestCode(resend){var em=$("em").value.trim().toLowerCase();
-if(!resend){if(!/^\S+@\S+\.\S+$/.test(em)){say("m1","Type a valid email address.","bad");return}
-if(mode==="new"){var f=$("fn").value.trim(),s=$("sn").value.trim();if(!f||!s){say("m1","Type your first and second name.","bad");return}names={f:f,s:s}}else names=null}
-var b=resend?$("resend"):$("send");b.disabled=true;say(resend?"m2":"m1","Sending code...");
-try{var t=await api("POST","/account/tokens/email",{userId:"unique()",email:em});userId=t.userId;$("sentTo").textContent="We sent a code to "+em+".";view("vCode");startTimer();say("m2",resend?"A new code was sent.":"","good");$("cd").value="";$("cd").focus()}
-catch(e){say(resend?"m2":"m1",nice(e),"bad");if(resend)startTimer()}
-if(!resend)b.disabled=false}
-$("send").onclick=function(){requestCode(false)};$("resend").onclick=function(){requestCode(true)};
-$("back").onclick=function(){clearInterval(timer);view("vAuth")};
-/* the "session is active" fix: always end any old session first, and retry once if Appwrite still says one exists */
+var r=await fetch(EP+path,{method:method,headers:h,credentials:"include",body:body?JSON.stringify(body):undefined});var c=r.headers.get("X-Fallback-Cookies");if(c)ls("cookieFallback",c);
+var d=null;try{d=await r.json()}catch(e){}if(!r.ok){var e=new Error((d&&d.message)||"Request failed");e.type=d&&d.type;e.status=r.status;throw e}return d}
+function nice(e){if(e.status===undefined)return "Cannot reach Appwrite. Check your internet. If it continues, add this website as a Web platform in Appwrite.";if(e.status===429)return "Too many tries. Please wait a few minutes.";
+if(e.type==="user_invalid_token"||e.type==="user_invalid_credentials")return "That code is wrong or has expired.";if(e.status===401)return "Please sign in again.";return e.message||"Something went wrong."}
+function rp(){return base==="t"?"/tablesdb/"+DB+"/tables/"+TB+"/rows":"/databases/"+DB+"/collections/"+TB+"/documents"}
+async function dbc(m,p,b){try{return await api(m,rp()+p,b)}catch(e){if(base==="t"&&e.type==="general_route_not_found"){base="l";return await api(m,rp()+p,b)}throw e}}
+function status(t){var e=document.getElementById("sv");if(e)e.textContent=t}
+function perms(t){var s=SCH.$id,a="team:"+s,o=a+"/owner",w=t==="marks"||t==="rem"?a:o;return['read("'+a+'")','update("'+w+'")','delete("'+w+'")']}
+async function put(type,id,data){var body={data:{schoolId:SCH.$id,type:type,data:JSON.stringify(data)}},up=known[id];status("Saving...");
+try{if(up)await dbc("PATCH","/"+id,body);else{body[base==="t"?"rowId":"documentId"]=id;body.permissions=perms(type);await dbc("POST","",body);known[id]=1}status("Saved âœ“")}
+catch(e){if(!up&&e.status===409){known[id]=1;return put(type,id,data)}if(up&&e.status===404){delete known[id];return put(type,id,data)}status("Not saved: "+nice(e))}}
+async function del(id){try{await dbc("DELETE","/"+id);delete known[id]}catch(e){}}
+function later(k,f){clearTimeout(tmo[k]);status("Saving...");tmo[k]=setTimeout(f,700)}
+function saveSet(){put("settings","settings",{school:D.school,bounds:D.bounds,subjects:D.subjects})}
+function mid(a,c,s){var h=0;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return "m_"+a+"_"+c+"_"+h.toString(36)}
+function saveMarks(a,c,s){var m={};D.learners.forEach(function(l){if(l.cls!==c)return;var v=D.marks[a+"|"+l.id+"|"+s];if(v!==undefined&&v!=="")m[l.id]=v});put("marks",mid(a,c,s),{a:a,c:c,s:s,m:m})}
+async function loadAll(){var rows=[],last=null;for(;;){var q=[{method:"equal",attribute:"schoolId",values:[SCH.$id]},{method:"limit",values:[100]}];if(last)q.push({method:"cursorAfter",values:[last]});
+var r=await dbc("GET","?"+q.map(function(x){return "queries[]="+encodeURIComponent(JSON.stringify(x))}).join("&")),a=r.rows||r.documents||[];rows=rows.concat(a);if(a.length<100)break;last=a[a.length-1].$id}
+var sel=D.sel;D=blank();D.sel=sel;known={};
+rows.forEach(function(r){var d;try{d=JSON.parse(r.data)}catch(e){return}known[r.$id]=1;var t=r.type;
+if(t==="settings"){D.school=d.school||D.school;D.bounds=d.bounds||D.bounds;D.subjects=d.subjects||D.subjects}
+else if(t==="class")D.classes.push(Object.assign({id:r.$id},d));else if(t==="learner")D.learners.push(Object.assign({id:r.$id},d));
+else if(t==="teacher")D.teachers.push(Object.assign({id:r.$id},d));else if(t==="assess")D.assess.push(Object.assign({id:r.$id},d));
+else if(t==="marks"){for(var k in d.m)D.marks[d.a+"|"+k+"|"+d.s]=d.m[k]}else if(t==="rem"){D.rem[d.a+"|"+d.l+"|1"]=d.r1||"";D.rem[d.a+"|"+d.l+"|2"]=d.r2||""}});
+var ms=await api("GET","/teams/"+SCH.$id+"/memberships"),mine=(ms.memberships||[]).filter(function(m){return m.userId===ME.$id})[0];
+D.role=mine&&(mine.roles||[]).indexOf("owner")>-1?"admin":"teacher";D.tab="home"}
+var $=function(i){return document.getElementById(i)};
+function uid(){return Math.random().toString(36).slice(2,9)}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function admin(){return D.role==="admin"}function me(){var e=(ME&&ME.email||"").toLowerCase();return D.teachers.filter(function(t){return t.email===e})[0]}
+function al(m){for(var i=0;i<8;i++)if(m>=D.bounds[i])return 8-i;return 1}
+function lvl(a){return a>=7?"EE":a>=5?"ME":a>=3?"AE":"BE"}
+var LN={EE:"Exceeding Expectation",ME:"Meeting Expectation",AE:"Approaching Expectation",BE:"Below Expectation"},CM={EE:"Outstanding performance; lead on!",ME:"Good performance; keep it up.",AE:"Fair performance; work harder.",BE:"Needs support; put in more effort."};
+function cls(id){return D.classes.filter(function(c){return c.id===id})[0]}
+function calc(a,c){var L=D.learners.filter(function(l){return l.cls===c}).map(function(l){var t=0,p=0,n=0,m={};D.subjects.forEach(function(s){var v=D.marks[a+"|"+l.id+"|"+s];if(v!==undefined&&v!==""){v=+v;m[s]=v;t+=v;p+=al(v);n++}});return{l:l,m:m,t:t,p:p,n:n,mean:n?p/n:0}});
+L.forEach(function(x){x.ov=1+L.filter(function(y){return y.t>x.t}).length;x.st=1+L.filter(function(y){return y.l.stream===x.l.stream&&y.t>x.t}).length});return L}
+function srank(L,s,v){return 1+L.filter(function(y){return y.m[s]!==undefined&&y.m[s]>v}).length}
+function pick(k,arr){if(!arr.some(function(a){return a.id===D.sel[k]}))D.sel[k]=arr[0]?arr[0].id:"";return D.sel[k]}
+function sel(id,arr,cur,all){return '<select id="'+id+'">'+(all?'<option value="">'+all+'</option>':'')+arr.map(function(a){return '<option value="'+esc(a.id)+'"'+(a.id===cur?' selected':'')+'>'+esc(a.name)+'</option>'}).join("")+'</select>'}
+function subs(){var t=me();return admin()||!t?D.subjects:D.subjects.filter(function(s){return t.subjects.indexOf(s)>-1})}
+/* ---------- pages ---------- */
+var P={};
+P.home=function(){var a=pick("a",D.assess),c=pick("c",D.classes),h='<div class="hero"><h1>'+esc(D.school.name)+'</h1><p>'+(admin()?"Admin dashboard":"Teacher: "+esc(me()?me().name:""))+'</p><span class="tag">'+esc(D.school.term)+' '+esc(D.school.year)+'</span><span class="tag">CBC</span></div>';
+h+='<div class="grid"><div class="stat"><b>'+D.learners.length+'</b><span>Learners</span></div><div class="stat"><b>'+D.classes.length+'</b><span>Classes</span></div><div class="stat"><b>'+D.teachers.length+'</b><span>Teachers</span></div></div>';
+if(!D.classes.length)return h+'<div class="card"><h3>Start here</h3><p>1. Open <b>Classes</b> and add a class with its streams.<br>2. Add learners.<br>3. Add subject teachers from the â˜° menu.<br>4. Create an assessment and enter marks.</p><button class="btn" data-go="classes">Add your first class</button></div>';
+h+='<div class="card"><div class="r2"><div><label>Assessment</label>'+sel("sa",D.assess,a)+'</div><div><label>Class</label>'+sel("sc",D.classes,c)+'</div></div></div>';
+if(!a)return h+'<div class="card"><p>Create an assessment in <b>Marks</b> to see analytics.</p></div>';
+var L=calc(a,c);if(!L.some(function(x){return x.n}))return h+'<div class="card"><p>No marks entered yet for this class.</p><button class="btn" data-go="marks">Enter marks</button></div>';
+h+='<div class="card"><h3>ðŸ“Š Subject averages</h3>';D.subjects.forEach(function(s){var v=L.filter(function(x){return x.m[s]!==undefined});if(v.length){var av=v.reduce(function(q,x){return q+x.m[s]},0)/v.length;h+='<div class="bar"><span>'+esc(s.split(" ")[0])+'</span><i style="width:'+av*0.55+'%"></i><b>'+Math.round(av)+'%</b></div>'}});h+='</div>';
+var dist={EE:0,ME:0,AE:0,BE:0};L.forEach(function(x){if(x.n)dist[lvl(Math.round(x.mean))]++});
+h+='<div class="card"><h3>ðŸŽ¯ Performance levels</h3>'+["EE","ME","AE","BE"].map(function(k){return '<div class="bar"><span>'+k+'</span><i style="width:'+(dist[k]/L.length*100*0.6)+'%"></i><b>'+dist[k]+'</b></div>'}).join("")+'</div>';
+var top=L.filter(function(x){return x.n}).sort(function(x,y){return y.t-x.t}).slice(0,5);
+h+='<div class="card"><h3>ðŸ† Top learners</h3>'+top.map(function(x,i){return '<div class="row"><span>'+(i+1)+'. '+esc(x.l.name)+'</span><span class="pill y">'+x.t+' marks</span></div>'}).join("")+'</div>';return h};
+P.classes=function(){var h='<div class="hero"><h1>ðŸ« Classes</h1><p>'+(admin()?"Add classes, streams and learners.":"Your school's classes.")+'</p></div>';
+if(admin())h+='<div class="card"><h3>Add a class</h3><label>Class name</label><input id="cn" placeholder="e.g. Grade 7" maxlength="30"><label>Streams (separate with commas)</label><input id="cs" placeholder="e.g. A, B, C" maxlength="60"><button class="btn" data-a="addc">Add class</button></div>';
+D.classes.forEach(function(c){var n=D.learners.filter(function(l){return l.cls===c.id}).length,open=D.sel.open===c.id;h+='<div class="card"><div class="row tap" data-a="open" data-i="'+c.id+'"><b>'+esc(c.name)+'</b><span class="pill">'+n+' learners â–¾</span></div>';
+if(open){var ls=D.learners.filter(function(l){return l.cls===c.id});
+if(admin())h+='<label>Add a learner</label><input id="ln" placeholder="Full name" maxlength="60"><div class="r2"><input id="la" placeholder="Adm No (optional)" maxlength="20"><select id="lt">'+c.streams.map(function(s){return '<option>'+esc(s)+'</option>'}).join("")+'</select></div><button class="btn" data-a="addl" data-i="'+c.id+'">Add learner</button><label>Add many (one name per line)</label><textarea id="lm" rows="3"></textarea><button class="btn s" data-a="addm" data-i="'+c.id+'">Add all</button>';
+h+=ls.map(function(l){return '<div class="row"><span>'+esc(l.name)+' <span class="small">'+esc(l.adm)+'</span></span><span><span class="pill">'+esc(l.stream)+'</span> '+(admin()?'<button class="x" data-a="dell" data-i="'+l.id+'" aria-label="Remove">âœ•</button>':'')+'</span></div>'}).join("");
+if(admin())h+='<button class="btn d" data-a="delc" data-i="'+c.id+'">Delete this class</button>'}h+='</div>'});return h};
+P.marks=function(){var h='<div class="hero"><h1>âœï¸ Enter marks</h1><p>Marks out of 100 are saved as you type.</p></div>';
+if(admin())h+='<div class="card"><h3>New assessment</h3><div class="r2"><input id="an" placeholder="e.g. End Term 3" maxlength="40"><button class="btn" style="margin:0" data-a="adda">Create</button></div></div>';
+if(!D.assess.length)return h+'<div class="card"><p>'+(admin()?"Create your first assessment above.":"Your admin has not created an assessment yet.")+'</p></div>';
+if(!D.classes.length)return h+'<div class="card"><p>Add a class and learners first.</p></div>';
+var a=pick("a",D.assess),c=pick("c",D.classes),ss=subs(),s=ss.indexOf(D.sel.s)>-1?D.sel.s:ss[0];D.sel.s=s;var cl=cls(c);
+h+='<div class="card"><div class="r2"><div><label>Assessment</label>'+sel("sa",D.assess,a)+'</div><div><label>Class</label>'+sel("sc",D.classes,c)+'</div></div><div class="r2"><div><label>Stream</label><select id="sst"><option value="">All streams</option>'+(cl?cl.streams:[]).map(function(x){return '<option'+(D.sel.st===x?' selected':'')+'>'+esc(x)+'</option>'}).join("")+'</select></div><div><label>Learning area</label><select id="ssub">'+ss.map(function(x){return '<option'+(x===s?' selected':'')+'>'+esc(x)+'</option>'}).join("")+'</select></div></div></div>';
+if(!s)return h+'<div class="card"><p>No subjects are assigned to you yet. Ask your admin.</p></div>';
+var ls=D.learners.filter(function(l){return l.cls===c&&(!D.sel.st||l.stream===D.sel.st)});
+h+='<div class="card"><h3>'+esc(s)+'</h3>'+(ls.length?ls.map(function(l){var v=D.marks[a+"|"+l.id+"|"+s];return '<div class="row"><span>'+esc(l.name)+'</span><input class="mk" type="number" inputmode="numeric" min="0" max="100" data-m="'+a+"|"+l.id+"|"+esc(s)+'" value="'+(v===undefined?"":esc(v))+'"></div>'}).join(""):'<p>No learners in this class or stream yet.</p>')+'</div>';return h};
+P.reports=function(){var h='<div class="hero"><h1>ðŸ“Š Reports</h1><p>Positions, grades and printable report cards.</p></div>';
+if(!admin())return h+'<div class="card"><p>Report cards are available to the school admin.</p></div>';
+if(!D.assess.length||!D.classes.length)return h+'<div class="card"><p>Add a class, learners and an assessment with marks first.</p></div>';
+var a=pick("a",D.assess),c=pick("c",D.classes),L=calc(a,c).sort(function(x,y){return x.ov-y.ov});
+h+='<div class="card"><div class="r2"><div><label>Assessment</label>'+sel("sa",D.assess,a)+'</div><div><label>Class</label>'+sel("sc",D.classes,c)+'</div></div><button class="btn" data-a="printall">ðŸ–¨ï¸ Print all report cards</button></div>';
+h+='<div class="card"><h3>Class ranking</h3><table><tr><th>Pos</th><th>Learner</th><th>Str</th><th>Marks</th><th>AL</th></tr>'+L.map(function(x){return '<tr class="tap" data-a="card" data-i="'+x.l.id+'"><td>'+x.ov+'</td><td>'+esc(x.l.name)+'</td><td>'+x.st+'</td><td>'+x.t+'</td><td>'+(x.n?"AL"+al(Math.round(x.mean)):"-")+'</td></tr>'}).join("")+'</table><p class="small">Tap a learner to open the report card.</p></div>';return h};
+P.card=function(){var a=D.sel.a,c=D.sel.c,L=calc(a,c),x=L.filter(function(y){return y.l.id===D.sel.l})[0];if(!x)return P.reports();
+return '<button class="btn s" data-go="reports" style="margin:0 0 10px">â† Back</button><div class="card"><div style="overflow-x:auto">'+rc(x,L)+'</div><label>Class teacher remarks</label><textarea id="r1" rows="2">'+esc(D.rem[a+"|"+x.l.id+"|1"]||"")+'</textarea><label>Principal remarks</label><textarea id="r2" rows="2">'+esc(D.rem[a+"|"+x.l.id+"|2"]||"")+'</textarea><button class="btn" data-a="print">ðŸ–¨ï¸ Print this report card</button></div>'};
+function rc(x,L){var a=D.sel.a,as=D.assess.filter(function(q){return q.id===a})[0],c=cls(D.sel.c),al8=al(Math.round(x.mean)),n=0,tr="";
+D.subjects.forEach(function(s){if(x.m[s]===undefined)return;var v=x.m[s],g=al(v),t=D.teachers.filter(function(q){return q.subjects.indexOf(s)>-1}).map(function(q){return q.name}).join(", ");tr+='<tr><td>'+esc(s)+'</td><td>'+v+'%</td><td>AL'+g+'</td><td>'+srank(L,s,v)+'</td><td>'+CM[lvl(g)]+'</td><td>'+esc(t)+'</td></tr>'});
+return '<div class="rc"><h2>'+esc(D.school.name.toUpperCase())+'</h2><div class="t">ACADEMIC REPORT FORM - '+esc(c?c.name.toUpperCase():"")+' - '+esc(as?as.name:"")+' ('+esc(D.school.year)+' '+esc(D.school.term)+')</div><div><b>'+esc(x.l.name.toUpperCase())+'</b> &nbsp; Adm: '+esc(x.l.adm||"-")+' &nbsp; Stream: '+esc(x.l.stream)+'</div>'+
+'<div class="rb"><div>Performance Level<b>AL'+al8+' ('+lvl(al8)+')</b></div><div>Total Marks<b>'+x.t+'</b></div><div>Total Points<b>'+x.p+'</b></div><div>Mean Points<b>'+x.mean.toFixed(2)+'</b></div></div><div class="rb" style="grid-template-columns:1fr 1fr"><div>Stream Position<b>'+x.st+'</b></div><div>Overall Position<b>'+x.ov+'</b></div></div>'+
+'<table><tr><th>Learning area</th><th>Marks</th><th>Grade</th><th>Rank</th><th>Comment</th><th>Teacher</th></tr>'+tr+'</table><p><b>Class teacher remarks:</b> '+esc(D.rem[a+"|"+x.l.id+"|1"]||"________________")+'</p><p><b>Principal remarks:</b> '+esc(D.rem[a+"|"+x.l.id+"|2"]||"________________")+'</p><p class="small">Levels: EE Exceeding, ME Meeting, AE Approaching, BE Below Expectation. Principal: '+esc(D.school.principal||"")+'</p></div>'}
+P.account=function(){return '<div class="hero"><h1>ðŸ‘¤ Account</h1><p>'+esc(ME.name)+'</p></div><div class="card"><p><b>Email:</b> '+esc(ME.email)+'<br><b>School:</b> '+esc(SCH.name)+'<br><b>Role:</b> '+(admin()?"Admin":"Teacher")+'</p><p class="small" id="sv"></p><button class="btn s" data-a="schools">Switch school</button><button class="btn d" data-a="signout">Sign out</button></div>'};
+P.school=function(){var s=D.school;return '<div class="hero"><h1>ðŸ·ï¸ School details</h1></div><div class="card"><label>School name</label><input data-f="name" value="'+esc(s.name)+'" maxlength="80"><label>Principal</label><input data-f="principal" value="'+esc(s.principal)+'" maxlength="60"><div class="r2"><div><label>Term</label><input data-f="term" value="'+esc(s.term)+'" maxlength="20"></div><div><label>Year</label><input data-f="year" value="'+esc(s.year)+'" maxlength="6"></div></div></div><div class="card"><h3>Grade boundaries (minimum marks)</h3><p class="small">Set your school\'s own limits. A mark at or above the number gets that level.</p><div class="r2">'+D.bounds.map(function(b,i){return '<div><label>AL'+(8-i)+' from</label><input type="number" data-b="'+i+'" value="'+b+'"></div>'}).join("")+'</div></div><div class="card"><h3>Learning areas</h3><textarea id="subs" rows="4">'+esc(D.subjects.join(", "))+'</textarea><button class="btn s" data-a="subs">Save learning areas</button></div>'};
+P.teachers=function(){return '<div class="hero"><h1>ðŸ‘©â€ðŸ« Subject teachers</h1><p>Invite teachers by email. They enter marks only for their subjects.</p></div><div class="card"><h3>Invite a teacher</h3><label>Teacher name</label><input id="tn" maxlength="60"><label>Teacher email</label><input id="te" type="email" maxlength="120"><label>Subjects taught</label>'+D.subjects.map(function(s,i){return '<label style="font-weight:400"><input type="checkbox" class="tc" value="'+i+'" style="width:auto;min-height:0"> '+esc(s)+'</label>'}).join("")+'<button class="btn" data-a="addt">Send invitation</button><p class="small">Appwrite emails them a link. After they open it and sign in with a code, they join your school.</p></div>'+D.teachers.map(function(t){return '<div class="card"><div class="row"><b>'+esc(t.name)+'</b><button class="x" data-a="delt" data-i="'+t.id+'">âœ•</button></div><span class="small">'+esc(t.email)+'<br>'+esc((t.subjects||[]).join(", "))+'</span></div>'}).join("")};
+P.auth=function(){var n=AU.mode==="new";return '<div class="hero"><h1>Exam records and report cards</h1><p>Sign in with a code sent to your email. No password.</p><span class="tag">CBC</span><span class="tag">Teachers</span><span class="tag">Report cards</span></div><div class="card"><div class="r2"><button class="btn'+(n?" s":"")+'" data-a="mode" data-i="sign" style="margin:0">Sign in</button><button class="btn'+(n?"":" s")+'" data-a="mode" data-i="new" style="margin:0">Create account</button></div>'+(n?'<div class="r2"><div><label>First name</label><input id="fn" maxlength="40" value="'+esc(AU.f||"")+'"></div><div><label>Second name</label><input id="sn" maxlength="40" value="'+esc(AU.s||"")+'"></div></div>':'')+'<label>Email</label><input id="em" type="email" inputmode="email" maxlength="120" value="'+esc(AU.email||"")+'"><button class="btn" data-a="send">Send code</button><p class="small" id="msg"></p></div>'};
+P.code=function(){return '<div class="card"><h3>Enter your code</h3><p class="small">We sent a 6-digit code to '+esc(AU.email)+'. It works for 15 minutes.</p><label>6-digit code</label><input id="cd" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="------" style="font-size:28px;letter-spacing:10px;text-align:center;font-weight:800"><button class="btn" data-a="verify">Verify</button><p id="tm" style="text-align:center;font-weight:800;margin:12px 0 0"></p><button class="btn s" id="rs" data-a="resend" disabled>Resend code</button><button class="btn s" data-a="back">Use a different email</button><p class="small" id="msg"></p></div>'};
+P.name=function(){return '<div class="card"><h3>Welcome! What is your name?</h3><div class="r2"><div><label>First name</label><input id="fn" maxlength="40"></div><div><label>Second name</label><input id="sn" maxlength="40"></div></div><button class="btn" data-a="savename">Save</button><p class="small" id="msg"></p></div>'};
+P.schools=function(){return '<div class="hero"><h1>Hi, '+esc(ME.name)+'!</h1><p>Choose your school, or create one as the admin.</p></div>'+LIST.map(function(t){return '<div class="card tap" data-a="pick" data-i="'+t.$id+'"><b>ðŸ« '+esc(t.name)+'</b><div class="small">Tap to open</div></div>'}).join("")+'<div class="card"><h3>Create a school (admin)</h3><label>School name</label><input id="sname" maxlength="80" placeholder="e.g. Mwamba Comprehensive School"><button class="btn" data-a="mk">Create school</button><p class="small">Teachers join by invitation from their school admin.</p><p class="small" id="msg"></p></div><button class="btn s" data-a="check">ðŸ©º Check database setup</button><div class="card" id="chk" style="display:none"></div><button class="btn d" data-a="signout">Sign out</button>'};
+P.setup=function(){return P.schools()};
+P.assess=function(){return '<div class="hero"><h1>ðŸ—‚ï¸ Assessments</h1></div><div class="card"><label>New assessment</label><input id="an" placeholder="e.g. Opener Term 1" maxlength="40"><button class="btn" data-a="adda">Create</button></div><div class="card">'+(D.assess.map(function(a){return '<div class="row"><span>'+esc(a.name)+'</span><button class="x" data-a="dela" data-i="'+a.id+'">âœ•</button></div>'}).join("")||"<p>None yet.</p>")+'</div>'};
+/* ---------- shell ---------- */
+function inapp(){return["home","classes","marks","reports","card","school","teachers","assess","account"].indexOf(D.tab)>-1}
+function nav(){if(!inapp()){$("nav").innerHTML="";return}var t=admin()?[["home","ðŸ ","Home"],["classes","ðŸ«","Classes"],["marks","âœï¸","Marks"],["reports","ðŸ“Š","Reports"],["account","ðŸ‘¤","Account"]]:[["home","ðŸ ","Home"],["marks","âœï¸","Marks"],["classes","ðŸ«","Classes"],["account","ðŸ‘¤","Account"]];
+$("nav").innerHTML=t.map(function(x){return '<button data-go="'+x[0]+'" class="'+(D.tab===x[0]?"on":"")+'"><b>'+x[1]+'</b>'+x[2]+'</button>'}).join("")}
+function menu(){if(!inapp()){$("mp").innerHTML="";return}var h='<button class="mi" id="mc">â† Close</button><h2>âš™ï¸ Learnover Options</h2>';
+if(admin())h+='<button class="mi" data-go="school">ðŸ·ï¸ School details & grades</button><button class="mi" data-go="teachers">ðŸ‘©â€ðŸ« Subject teachers</button><button class="mi" data-go="assess">ðŸ—‚ï¸ Assessments</button>';
+h+='<button class="mi" data-a="schools">ðŸ« Switch school</button><button class="mi" data-a="signout">ðŸšª Sign out</button><p class="small" id="sv"></p>';$("mp").innerHTML=h}
+function render(){var p=P[D.tab]||P.home;document.title="Learnover Analytics";$("v").innerHTML=p();$("mb").style.display=inapp()?"":"none";nav();menu();save();window.scrollTo(0,0)}
+function openM(o){$("mp").classList.toggle("o",o);$("bd").classList.toggle("o",o)}
+function go(t){D.tab=t;openM(false);render()}
+$("mb").onclick=function(){openM(true)};$("bd").onclick=function(){openM(false)};
+document.addEventListener("click",function(e){var g=e.target.closest("[data-go]");if(g&&g.id!=="mc"){go(g.dataset.go);return}if(e.target.id==="mc"){openM(false);return}
+var b=e.target.closest("[data-a]");if(!b)return;var a=b.dataset.a,i=b.dataset.i,v=function(id){var x=$(id);return x?x.value.trim():""};
+if(a==="addc"){var n=v("cn");if(!n)return alert("Type the class name.");var st=v("cs").split(",").map(function(s){return s.trim()}).filter(Boolean);var o={id:uid(),name:n,streams:st.length?st:["A"]};D.classes.push(o);put("class",o.id,{name:o.name,streams:o.streams})}
+else if(a==="open"){D.sel.open=D.sel.open===i?"":i}
+else if(a==="addl"){var n2=v("ln");if(!n2)return alert("Type the learner's name.");var o2={id:uid(),name:n2,adm:v("la"),cls:i,stream:v("lt")};D.learners.push(o2);put("learner",o2.id,{name:o2.name,adm:o2.adm,cls:o2.cls,stream:o2.stream})}
+else if(a==="addm"){var c=cls(i);v("lm").split("\n").map(function(s){return s.trim()}).filter(Boolean).forEach(function(n){var o3={id:uid(),name:n,adm:"",cls:i,stream:c.streams[0]};D.learners.push(o3);put("learner",o3.id,{name:n,adm:"",cls:i,stream:o3.stream})})}
+else if(a==="dell"){if(!confirm("Remove this learner and their marks?"))return;del(i);D.learners=D.learners.filter(function(l){return l.id!==i});Object.keys(D.marks).forEach(function(k){if(k.split("|")[1]===i)delete D.marks[k]})}
+else if(a==="delc"){if(!confirm("Delete this class and all its learners?"))return;var ids=D.learners.filter(function(l){return l.cls===i}).map(function(l){return l.id});ids.forEach(del);del(i);D.learners=D.learners.filter(function(l){return l.cls!==i});Object.keys(D.marks).forEach(function(k){if(ids.indexOf(k.split("|")[1])>-1)delete D.marks[k]});D.classes=D.classes.filter(function(c){return c.id!==i})}
+else if(a==="adda"){var n3=v("an");if(!n3)return alert("Type the assessment name.");var id=uid();D.assess.push({id:id,name:n3});D.sel.a=id;put("assess",id,{name:n3})}
+else if(a==="dela"){if(!confirm("Delete this assessment and its marks?"))return;del(i);D.assess=D.assess.filter(function(q){return q.id!==i});Object.keys(D.marks).forEach(function(k){if(k.split("|")[0]===i)delete D.marks[k]})}
+else if(a==="addt"){var n4=v("tn"),em=v("te").toLowerCase(),sb=[].slice.call(document.querySelectorAll(".tc:checked")).map(function(q){return D.subjects[+q.value]});if(!n4||!/^\S+@\S+\.\S+$/.test(em))return alert("Type the teacher's name and a valid email.");invite(n4,em,sb);return}
+else if(a==="delt"){var tt=D.teachers.filter(function(t){return t.id===i})[0];if(!confirm("Remove this teacher?"))return;if(tt&&tt.mid)api("DELETE","/teams/"+SCH.$id+"/memberships/"+tt.mid).catch(function(){});del(i);D.teachers=D.teachers.filter(function(t){return t.id!==i})}
+else if(a==="subs"){var l=v("subs").split(",").map(function(s){return s.trim()}).filter(Boolean);if(l.length){D.subjects=l;saveSet()}}
+else if(a==="card"){D.sel.l=i;D.tab="card"}
+else if(a==="print"||a==="printall"){var A=D.sel.a,C=D.sel.c,L=calc(A,C).sort(function(x,y){return x.ov-y.ov}),one=a==="print";$("print").innerHTML=L.filter(function(x){return !one||x.l.id===D.sel.l}).map(function(x){return rc(x,L)}).join("");window.print();return}
+else if(a==="mode"){AU.mode=i;AU.email=v("em")||AU.email}
+else if(a==="send"){AU.f=v("fn");AU.s=v("sn");AU.email=v("em").toLowerCase();sendCode(false);return}
+else if(a==="resend"){sendCode(true);return}else if(a==="back"){clearInterval(tick);D.tab="auth"}
+else if(a==="verify"){verify(b);return}else if(a==="savename"){saveName();return}
+else if(a==="signout"){signOut();return}else if(a==="schools"){showSchools();return}
+else if(a==="mk"){mkSchool(b);return}else if(a==="pick"){pickSchool(i);return}else if(a==="check"){check();return}
+render()});
+document.addEventListener("change",function(e){var t=e.target,id=t.id;
+if(id==="sa"){D.sel.a=t.value}else if(id==="sc"){D.sel.c=t.value;D.sel.st=""}else if(id==="sst"){D.sel.st=t.value}else if(id==="ssub"){D.sel.s=t.value}
+else if(t.dataset.f){D.school[t.dataset.f]=t.value;saveSet();return}else if(t.dataset.b){D.bounds[+t.dataset.b]=+t.value||0;saveSet();return}else return;render()});
+document.addEventListener("input",function(e){var t=e.target;if(t.dataset.m){var v=t.value;if(v!==""){v=Math.max(0,Math.min(100,+v));if(+t.value>100)t.value=100}D.marks[t.dataset.m]=v;var p=t.dataset.m.split("|");later(t.dataset.m.split("|")[2]+p[0],function(){saveMarks(p[0],D.sel.c,p[2])})}else if(t.id==="r1"||t.id==="r2"){D.rem[D.sel.a+"|"+D.sel.l+"|"+t.id.slice(1)]=t.value;var A=D.sel.a,Lr=D.sel.l;later("rem"+Lr,function(){put("rem","r_"+A+"_"+Lr,{a:A,l:Lr,r1:D.rem[A+"|"+Lr+"|1"]||"",r2:D.rem[A+"|"+Lr+"|2"]||""})})}});
+
+function say(t,c){var e=$("msg");if(!e)return;e.textContent=t;e.style.color=c==="bad"?"#b3261e":c==="good"?"#0f6b4f":"";e.style.fontWeight=c?"700":""}
+function timer(){var n=120;clearInterval(tick);function t(){var e=$("tm"),b=$("rs");if(!e){clearInterval(tick);return}var m=Math.floor(n/60),x=n%60;e.textContent=n>0?"Resend available in "+(m<10?"0":"")+m+":"+(x<10?"0":"")+x:"00:00";if(b)b.disabled=n>0;if(n<=0)clearInterval(tick);n--}t();tick=setInterval(t,1000)}
+async function sendCode(re){var em=AU.email;if(!re){if(!/^\S+@\S+\.\S+$/.test(em||"")){say("Type a valid email.","bad");return}if(AU.mode==="new"&&(!AU.f||!AU.s)){say("Type your first and second name.","bad");return}}
+say("Sending code...");try{var t=await api("POST","/account/tokens/email",{userId:"unique()",email:em});AU.uid=t.userId;D.tab="code";render();timer();say(re?"A new code was sent.":"","good")}catch(e){say(nice(e),"bad");if(re)timer()}}
 async function endSession(){try{await api("DELETE","/account/sessions/current")}catch(e){}ls("cookieFallback",null)}
-async function makeSession(code){await endSession();
-try{return await api("POST","/account/sessions/token",{userId:userId,secret:code})}
-catch(e){if(e.type==="user_session_already_exists"||/session is active/i.test(e.message||"")){await endSession();return await api("POST","/account/sessions/token",{userId:userId,secret:code})}throw e}}
-$("verify").onclick=async function(){var code=$("cd").value.replace(/\D/g,"");if(code.length!==6){say("m2","Type the 6-digit code.","bad");return}
-var b=this;b.disabled=true;say("m2","Checking...");
-try{await makeSession(code);clearInterval(timer);me=await api("GET","/account");
-if(!me.name&&names){await api("PATCH","/account/name",{name:names.f+" "+names.s});me.name=names.f+" "+names.s}
-else if(me.name&&mode==="new")say("m1","You already had an account, so we signed you in.","good");
-if(!me.name){view("vName")}else enter()}
-catch(e){say("m2",nice(e),"bad")}b.disabled=false};
-$("saveName").onclick=async function(){var f=$("fn2").value.trim(),s=$("sn2").value.trim();if(!f||!s){say("m3","Type both names.","bad");return}
-try{await api("PATCH","/account/name",{name:f+" "+s});me.name=f+" "+s;enter()}catch(e){say("m3",nice(e),"bad")}};
-async function signOut(){await endSession();me=null;view("vAuth");setMode("sign")}
-$("out2").onclick=signOut;
-/* ---- home: schools ---- */
-async function enter(){$("hi").textContent="Hi, "+(me.name||"teacher")+"!";view("vHome");await loadSchools()}
-async function loadSchools(){var box=$("schools");box.textContent="";
-try{var r=await api("GET","/teams");(r.teams||[]).forEach(function(t){var c=document.createElement("button");c.className="card";c.style.cssText="width:100%;text-align:left;font:inherit;cursor:pointer";var h=document.createElement("b");h.textContent="ðŸ« "+t.name;var p=document.createElement("div");p.className="small";p.textContent="Tap to open";c.appendChild(h);c.appendChild(p);c.onclick=function(){openSchool(t)};box.appendChild(c)})}
-catch(e){var m=document.createElement("p");m.className="msg bad";m.textContent=nice(e);box.appendChild(m)}}
-function makeCode(){var a="ABCDEFGHJKLMNPQRSTUVWXYZ23456789",u=new Uint32Array(6),o="";crypto.getRandomValues(u);for(var i=0;i<6;i++)o+=a[u[i]%a.length];return o}
-$("mk").onclick=async function(){var n=$("sname").value.trim();if(n.length<3){say("m4","Type the school name.","bad");return}
-var b=this;b.disabled=true;say("m4","Creating school...");
-try{var t=await api("POST","/teams",{teamId:"unique()",name:n});await api("PUT","/teams/"+t.$id+"/prefs",{prefs:{code:makeCode()}});$("sname").value="";say("m4","School created! You are the admin.","good");await loadSchools()}
-catch(e){say("m4",nice(e),"bad")}b.disabled=false};
-async function openSchool(t){$("sch").textContent=t.name;$("scode").textContent="------";$("mem").textContent="Loading...";$("role").textContent="";view("vSchool");
-try{var p=await api("GET","/teams/"+t.$id+"/prefs");$("scode").textContent=p.code||"------";var r=await api("GET","/teams/"+t.$id+"/memberships");$("mem").textContent="";
-(r.memberships||[]).forEach(function(m){var admin=(m.roles||[]).indexOf("owner")>-1,mine=m.userId===me.$id;if(mine)$("role").textContent=admin?"Admin":"Teacher";
-var row=document.createElement("div");row.className="member";var a=document.createElement("span");a.textContent=(m.userName||m.userEmail)+(mine?" (you)":"");var b=document.createElement("span");b.className="pill";b.textContent=admin?"Admin":"Teacher";row.appendChild(a);row.appendChild(b);$("mem").appendChild(row)})}
-catch(e){$("mem").textContent=nice(e)}}
-$("bk").onclick=function(){view("vHome");loadSchools()};$("home2").onclick=function(){view("vHome");loadSchools()};
-$("menuBtn").onclick=function(){menu(true)};$("bd").onclick=function(){menu(false)};
-/* ---- start: if already signed in, skip the login screen ---- */
-(async function(){try{me=await api("GET","/account");me.name?enter():view("vName")}catch(e){view("vAuth")}})();
-})();
-</script></body></html>
+async function mkSession(code){await endSession();try{return await api("POST","/account/sessions/token",{userId:AU.uid,secret:code})}catch(e){if(e.type==="user_session_already_exists"||/session is active/i.test(e.message||"")){await endSession();return await api("POST","/account/sessions/token",{userId:AU.uid,secret:code})}throw e}}
+async function verify(b){var code=($("cd").value||"").replace(/\D/g,"");if(code.length!==6){say("Type the 6-digit code.","bad");return}b.disabled=true;say("Checking...");
+try{await mkSession(code);clearInterval(tick);ME=await api("GET","/account");if(!ME.name&&AU.mode==="new"&&AU.f){await api("PATCH","/account/name",{name:AU.f+" "+AU.s});ME.name=AU.f+" "+AU.s}if(!ME.name){D.tab="name";render()}else await enter()}catch(e){say(nice(e),"bad");b.disabled=false}}
+async function saveName(){var f=$("fn").value.trim(),s2=$("sn").value.trim();if(!f||!s2){say("Type both names.","bad");return}try{await api("PATCH","/account/name",{name:f+" "+s2});ME.name=f+" "+s2;await enter()}catch(e){say(nice(e),"bad")}}
+async function signOut(){await endSession();ME=null;SCH=null;D=blank();AU={mode:"sign"};render()}
+async function acceptInv(){var v=null;try{v=JSON.parse(sessionStorage.getItem("inv"))}catch(e){}if(!v)return;try{sessionStorage.removeItem("inv")}catch(e){}
+try{await api("PATCH","/teams/"+v.t+"/memberships/"+v.m+"/status",{userId:v.u,secret:v.s})}catch(e){}}
+async function enter(){await acceptInv();await showSchools(true)}
+async function showSchools(auto){try{var r=await api("GET","/teams");LIST=r.teams||[]}catch(e){LIST=[]}
+if(auto&&LIST.length===1){return pickSchool(LIST[0].$id)}D.tab="schools";render()}
+async function pickSchool(id){SCH=LIST.filter(function(t){return t.$id===id})[0];if(!SCH)return;$("v").innerHTML='<div class="card"><p>Loading your school...</p></div>';
+try{await loadAll();render()}catch(e){D.tab="schools";render();var m=$("chk");if(m){m.style.display="block";m.textContent="Could not load data: "+nice(e)+" Tap Check database setup."}}}
+async function mkSchool(b){var n=$("sname").value.trim();if(n.length<3){say("Type the school name.","bad");return}b.disabled=true;say("Creating school...");
+try{var t=await api("POST","/teams",{teamId:"unique()",name:n});SCH=t;LIST.push(t);D=blank();D.sel={};D.school.name=n;D.role="admin";known={};await put("settings","settings",{school:D.school,bounds:D.bounds,subjects:D.subjects});D.tab="home";render()}catch(e){say(nice(e),"bad");b.disabled=false}}
+async function invite(n,em,sb){try{var m=await api("POST","/teams/"+SCH.$id+"/memberships",{roles:["teacher"],email:em,name:n,url:location.origin+"/"});var t={id:uid(),name:n,email:em,subjects:sb,mid:m.$id};D.teachers.push(t);await put("teacher",t.id,{name:n,email:em,subjects:sb,mid:m.$id});alert("Invitation sent to "+em+".")}catch(e){alert(nice(e))}render()}
+async function check(){var o=[],box=$("chk");box.style.display="block";box.textContent="Checking...";function L(k,t){o.push((k?"âœ… ":"âŒ ")+t)}
+try{await dbc("GET","?queries[]="+encodeURIComponent(JSON.stringify({method:"limit",values:[1]})));L(1,"Database \""+DB+"\" and table \""+TB+"\" found.")}catch(e){var t=e.type||"";L(0,/database_not_found/.test(t)?"Database not found. Create a database with the ID: "+DB:/not_found/.test(t)?"Table not found. Create a table with the ID: "+TB:nice(e))}
+try{await dbc("GET","?queries[]="+encodeURIComponent(JSON.stringify({method:"equal",attribute:"schoolId",values:["x"]})));L(1,"Index on schoolId works.")}catch(e){L(0,"Problem with column schoolId or its index: "+(e.message||""))}
+box.innerHTML="";o.forEach(function(x){var p=document.createElement("p");p.textContent=x;box.appendChild(p)})}
+(async function(){var q=new URLSearchParams(location.search);if(q.get("membershipId")){try{sessionStorage.setItem("inv",JSON.stringify({t:q.get("teamId"),m:q.get("membershipId"),u:q.get("userId"),s:q.get("secret")}))}catch(e){}history.replaceState(null,"",location.pathname)}
+try{ME=await api("GET","/account");ME.name?await enter():(D.tab="name",render())}catch(e){D.tab="auth";render()}})();
+})();</script></body></html>
